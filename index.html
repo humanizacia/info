@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>hmnz</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		body {
+			background-color: #0a0a0a;
+			color: #00ff00;
+			font-family: 'Courier New', monospace;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: 100vh;
+			overflow: hidden;
+		}
+		.console-container {
+			width: 90%;
+			max-width: 900px;
+			height: 70vh;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+		}
+		.console {
+			width: 100%;
+			height: 100%;
+			border: 1px solid #00ff00;
+			padding: 20px;
+			overflow-y: auto;
+			box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+			border-radius: 4px;
+			background-color: rgba(0, 20, 0, 0.1);
+		}
+		.console-line {
+			margin-bottom: 8px;
+			line-height: 1.4;
+			white-space: nowrap;
+			overflow: hidden;
+		}
+		.console-line a {
+			color: #00ff00;
+			text-decoration: none;
+		}
+		.console-line a:hover {
+			text-decoration: underline;
+		}
+		.captcha-container {
+			display: none;
+			margin-top: 20px;
+			padding: 15px;
+			border: 1px solid #00ff00;
+			background-color: rgba(0, 30, 0, 0.2);
+		}
+		.captcha-code {
+			font-size: 1.5rem;
+			font-weight: bold;
+			letter-spacing: 3px;
+			padding: 10px;
+			margin: 10px 0;
+			background-color: rgba(0, 40, 0, 0.3);
+			text-align: center;
+			color: #00ff00;
+			font-family: 'Courier New', monospace;
+			user-select: none;
+		}
+		.captcha-input {
+			width: 100%;
+			background-color: #0a0a0a;
+			border: 1px solid #00ff00;
+			color: #00ff00;
+			padding: 10px;
+			font-family: 'Courier New', monospace;
+			margin: 10px 0;
+		}
+		.captcha-input:focus {
+			outline: 1px solid #00ff00;
+		}
+		.captcha-submit {
+			background-color: #0a0a0a;
+			color: #00ff00;
+			border: 1px solid #00ff00;
+			padding: 8px 15px;
+			cursor: pointer;
+			font-family: 'Courier New', monospace;
+			margin-top: 10px;
+		}
+		.captcha-submit:hover {
+			background-color: rgba(0, 255, 0, 0.1);
+		}
+		.captcha-message {
+			color: #ff5555;
+			margin-top: 10px;
+			display: none;
+		}
+		.next-page-btn {
+			display: none;
+			background-color: #0a0a0a;
+			color: #00ff00;
+			border: 1px solid #00ff00;
+			padding: 10px 20px;
+			cursor: pointer;
+			font-family: 'Courier New', monospace;
+			margin-top: 20px;
+			text-align: center;
+			text-decoration: none;
+			width: 100%;
+		}
+		.next-page-btn:hover {
+			background-color: rgba(0, 255, 0, 0.1);
+		}
+		.blink {
+			animation: blink 1s infinite;
+		}
+		@keyframes blink {
+			50% { opacity: 0; }
+		}
+		
+		/* Стили для второй страницы */
+		#page2 {
+			display: none;
+			width: 100%;
+			height: 100%;
+			border: 1px solid #00ff00;
+			padding: 20px;
+			overflow-y: auto;
+			box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+			border-radius: 4px;
+			background-color: rgba(0, 20, 0, 0.1);
+		}
+		.terminal-header {
+			text-align: center;
+			margin-bottom: 20px;
+			font-size: 1.2rem;
+			color: #00ff00;
+		}
+	</style>
+</head>
+<body>
+	<div class="console-container">
+		<div class="console" id="console"></div>
+		<div class="captcha-container" id="captchaContainer">
+			<div class="console-line">System requires human verification:</div>
+			<div class="captcha-code" id="captchaCode">ABCD</div>
+			<input type="text" class="captcha-input" id="captchaInput" placeholder="Enter CAPTCHA code">
+			<button class="captcha-submit" id="captchaSubmit">Verify</button>
+			<div class="captcha-message" id="captchaMessage">Access denied! Invalid code.</div>
+		</div>
+		<button class="next-page-btn" id="nextPageBtn">>> PROCEED TO SECURE TERMINAL</button>
+		
+		<!-- Вторая страница -->
+		<div id="page2">
+			<div class="terminal-header">INFO:</div>
+			<div class="console-line">Username: @humanizacia</div>
+			<div class="console-line">ID: @383382311</div>
+			<div class="console-line">Timezone: Asia // GMT +5</div>
+			<div class="console-line">Languages: Ru, En</div>
+			<div class="console-line">Def: none</div>
+			<div class="console-line">Bot: @GreatDeutschland_bot</div>
+			<div class="console-line">Anonim Question: <a href="http://t.me/anonaskbot?start=enq94" target="_blank">(click)</a></div>
+			<div class="console-line">Personal Channel: <a href="https://t.me/vmyblog" target="_blank">(click)</a></div>
+			<div class="console-line">Prices: <a href="https://t.me/humanizacia_sell" target="_blank">(click)</a></div>
+			<div class="console-line">Reviews: <a href="https://t.me/+aQeSBBbppAFiMWM1" target="_blank">(click)</a></div>
+			<div class="console-line">Bros: @xuwao</div>
+			<div class="console-line">More about me: Garant // Seller</div>
+			<div class="console-line blink">_</div>
+		</div>
+	</div>
+	<script>
+		const consoleElement = document.getElementById('console');
+		const captchaContainer = document.getElementById('captchaContainer');
+		const captchaCode = document.getElementById('captchaCode');
+		const captchaInput = document.getElementById('captchaInput');
+		const captchaSubmit = document.getElementById('captchaSubmit');
+		const captchaMessage = document.getElementById('captchaMessage');
+		const nextPageBtn = document.getElementById('nextPageBtn');
+		const page2 = document.getElementById('page2');
+		
+		const messages = [
+			"Loading the config...",
+			"Uploading files...",
+			"Download ddos-protection...",
+			"Processing the request...",
+			"Request accepted.",
+			"Loading captcha...",
+			"Captcha successfully installed."
+		];
+		
+		const postCaptchaMessages = [
+			"CAPTCHA verification successful. Access granted.",
+			"Initializing system...",
+			"Connection established."
+		];
+		
+		let messageIndex = 0;
+		let currentCaptcha = '';
+		
+		function generateCaptcha() {
+			const characters = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+			let captcha = '';
+			for (let i = 0; i < 5; i++) {
+				captcha += characters.charAt(Math.floor(Math.random() * characters.length));
+			}
+			return captcha;
+		}
+		
+		function typeMessage(message, callback) {
+			const line = document.createElement('div');
+			line.className = 'console-line';
+			consoleElement.appendChild(line);
+			
+			let index = 0;
+			
+			function typeCharacter() {
+				if (index < message.length) {
+					line.textContent += message.charAt(index);
+					index++;
+					setTimeout(typeCharacter, 25);
+				} else {
+					if (callback) setTimeout(callback, 400);
+				}
+			}
+			
+			typeCharacter();
+		}
+		
+		function typeMessages(messages, callback) {
+			let currentIndex = 0;
+			
+			function typeNextMessage() {
+				if (currentIndex < messages.length) {
+					typeMessage(messages[currentIndex], () => {
+						currentIndex++;
+						typeNextMessage();
+					});
+				} else {
+					if (callback) setTimeout(callback, 400);
+				}
+			}
+			
+			typeNextMessage();
+		}
+		
+		function startHackingSequence() {
+			if (messageIndex < messages.length) {
+				typeMessage(messages[messageIndex], () => {
+					messageIndex++;
+					startHackingSequence();
+				});
+			} else {
+				// Show CAPTCHA after all messages
+				setTimeout(() => {
+					captchaContainer.style.display = 'block';
+					currentCaptcha = generateCaptcha();
+					captchaCode.textContent = currentCaptcha;
+					
+					// Add blinking cursor effect to input
+					captchaInput.placeholder = "_";
+					setInterval(() => {
+						captchaInput.placeholder = captchaInput.placeholder === "_" ? " " : "_";
+					}, 500);
+				}, 500);
+			}
+		}
+		
+		// Handle CAPTCHA submission
+		captchaSubmit.addEventListener('click', () => {
+			if (captchaInput.value.toUpperCase() === currentCaptcha) {
+				// CAPTCHA is correct
+				captchaMessage.style.display = 'none';
+				captchaContainer.style.display = 'none';
+				
+				// Type post-CAPTCHA messages
+				typeMessages(postCaptchaMessages, () => {
+					// Show the next page button after all messages are typed
+					nextPageBtn.style.display = 'block';
+				});
+			} else {
+				// CAPTCHA is incorrect
+				captchaMessage.style.display = 'block';
+				captchaInput.value = '';
+				currentCaptcha = generateCaptcha();
+				captchaCode.textContent = currentCaptcha;
+			}
+		});
+		
+		// Allow pressing Enter to submit CAPTCHA
+		captchaInput.addEventListener('keypress', (e) => {
+			if (e.key === 'Enter') {
+				captchaSubmit.click();
+			}
+		});
+		
+		// Handle переход на вторую страницу
+		nextPageBtn.addEventListener('click', () => {
+			// Скрываем все элементы первой страницы
+			consoleElement.style.display = 'none';
+			captchaContainer.style.display = 'none';
+			nextPageBtn.style.display = 'none';
+			
+			// Показываем вторую страницу
+			page2.style.display = 'block';
+			
+			// Принудительно перерисовываем страницу чтобы ссылки стали активными
+			setTimeout(() => {
+				document.body.offsetHeight; // Принудительная перерисовка
+			}, 50);
+		});
+		
+		// Start the sequence
+		startHackingSequence();
+	</script>
+</body>
+</html>
